@@ -9,14 +9,14 @@ scripts:
   - docker run -e CI=true priyojit/complex-demo-react-test npm run test -- --coverage
 
 after_success:
-  - docker build -t priyojit/client ./client
-  - docker build -t priyojit/server ./server
-  - docker build -t priyojit/worker ./worker
-  - docker build -t priyojit/nginx ./nginx
+  - docker build -t priyo153/client ./client
+  - docker build -t priyo153/server ./server
+  - docker build -t priyo153/worker ./worker
+  - docker build -t priyo153/nginx ./nginx
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
-  - docker push priyojit/client
-  - docker push priyojit/server
-  - docker push priyojit/worker
-  - docker push priyojit/nginx
+  - docker push priyo153/client
+  - docker push priyo153/server
+  - docker push priyo153/worker
+  - docker push priyo153/nginx
