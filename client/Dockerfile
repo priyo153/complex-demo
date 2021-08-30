@@ -3,7 +3,7 @@ WORKDIR "/app"
 COPY ./package.json ./
 RUN npm install
 COPY . .
-run npm run build   
+run npm build   
 
 from nginx
 expose 80
