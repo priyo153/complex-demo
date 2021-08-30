@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t priyojit/complex-demo-react-test -f ./client/Dockerfile.dev ./client
+
+scripts:
+  - docker run priyojit/complex-demo-react-test npm run test -- --coverage
+
+after_success:
+  - docker build -t priyojit/client ./client
+  - docker build -t priyojit/server ./server
+  - docker build -t priyojit/worker ./worker
+  - docker build -t priyojit/nginx ./nginx
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push priyojit/client
+  - docker push priyojit/server
+  - docker push priyojit/worker
+  - docker push priyojit/nginx
