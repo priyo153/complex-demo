@@ -6,7 +6,7 @@ before_install:
   - docker build -t priyojit/complex-demo-react-test -f ./client/Dockerfile.dev ./client
 
 scripts:
-  - docker run priyojit/complex-demo-react-test npm run test -- --coverage
+  - docker run -e CI=true priyojit/complex-demo-react-test npm run test -- --coverage
 
 after_success:
   - docker build -t priyojit/client ./client
